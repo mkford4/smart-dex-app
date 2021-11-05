@@ -1,1 +1,9 @@
 /* CSS for JavaScript app in Achievement 1*/
+
+body {
+font-family: 'Montserrat', sans-serif;
+font-weight: 400;
+font-size: 16px;
+line-height: 1.4;
+color: #154c79;
+}
