@@ -1,7 +1,13 @@
-pokemonList = [
+let pokemonList = [
   {name: 'Bulbasaur', height: 2.04, types: ['grass', 'poison']},
   {name: 'Charmander', height: 2, types: 'fire'},
   {name: 'Squirtle', height: 1.08, types: 'water'},
+  {name: 'Alakazam', height: 4.11, types: 'psychic'},
+  {name: 'Pikachu', height: 1.04, types: 'electric'},
+  {name: 'Sandslash', height: 3.3, types: 'ground'},
+]
+
+let pokemonList2 = [
   {name: 'Alakazam', height: 4.11, types: 'psychic'},
   {name: 'Pikachu', height: 1.04, types: 'electric'},
   {name: 'Sandslash', height: 3.3, types: 'ground'},
@@ -15,6 +21,18 @@ for (i=0; i < pokemonList.length; i++) {
     document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')<p>')
   }
 }
+
+// printArrayDetails function loop example with parameter (list)
+/* function printArrayDetails(list) {
+  for (i=0; i < list.length; i++) {
+    document.write('<p>' + list[i].name + '</p>');
+    console.log(list[i].name);
+  }
+}
+
+printArrayDetails(pokemonList);
+printArrayDetails(pokemonList2);
+*/
 
 /* for loop example 1.3
 let personAge = [
