@@ -16,17 +16,20 @@ let pokemonRepository = (function () {
     return pokemonList.push(pokemon)
   };
 
+// attempt at bonus task- addv function should only input objects
+  function addv(pokemon) {
+    if (typeof(pokemon) === 'object') {
+      return pokemonList.push(pokemon)
+    } else {
+      console.log('Cannot be added');
+    }
+  };
+
   return {
     getAll: getAll,
     add: add
   };
 })();
-
-let pokemonList2 = [
-  {name: 'Alakazam', height: 4.11, types: 'psychic'},
-  {name: 'Pikachu', height: 1.04, types: 'electric'},
-  {name: 'Sandslash', height: 3.3, types: 'ground'},
-]
 
 // forEach loop (simplified from for loop below)
 pokemonRepository.getAll().forEach( function(pokemon) {
@@ -36,6 +39,8 @@ pokemonRepository.getAll().forEach( function(pokemon) {
     document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') </p>')
   }
 });
+
+
 
 /* for loop: Lists out pokemon in pokemonList with height; added conditional for tallest Pokemon with extra message
 for (i=0; i < pokemonList.length; i++) {
