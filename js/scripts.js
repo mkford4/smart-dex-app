@@ -1,11 +1,26 @@
-let pokemonList = [
-  {name: 'Bulbasaur', height: 2.04, types: ['grass', 'poison']},
-  {name: 'Charmander', height: 2, types: 'fire'},
-  {name: 'Squirtle', height: 1.08, types: 'water'},
-  {name: 'Alakazam', height: 4.11, types: 'psychic'},
-  {name: 'Pikachu', height: 1.04, types: 'electric'},
-  {name: 'Sandslash', height: 3.3, types: 'ground'},
-]
+let pokemonRepository = (function () {
+  let pokemonList = [
+    {name: 'Bulbasaur', height: 2.04, types: ['grass', 'poison']},
+    {name: 'Charmander', height: 2, types: 'fire'},
+    {name: 'Squirtle', height: 1.08, types: 'water'},
+    {name: 'Alakazam', height: 4.11, types: 'psychic'},
+    {name: 'Pikachu', height: 1.04, types: 'electric'},
+    {name: 'Sandslash', height: 3.3, types: 'ground'},
+  ];
+
+  function getAll() {
+    return pokemonList;
+  };
+
+  function add(pokemon) {
+    return pokemonList.push(pokemon)
+  };
+
+  return {
+    getAll: getAll,
+    add: add
+  };
+})();
 
 let pokemonList2 = [
   {name: 'Alakazam', height: 4.11, types: 'psychic'},
@@ -14,7 +29,7 @@ let pokemonList2 = [
 ]
 
 // forEach loop (simplified from for loop below)
-pokemonList.forEach( function(pokemon) {
+pokemonRepository.getAll().forEach( function(pokemon) {
   if (pokemon.height > 4) {
     document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') - Wow, that\'s big! </p>' )
   } else {
