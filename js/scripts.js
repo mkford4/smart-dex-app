@@ -16,14 +16,15 @@ let pokemonRepository = (function () {
     return pokemonList.push(pokemon)
   };
 
-// attempt at bonus task- addv function should only input objects
+/* attempt at bonus task- addv function should only input objects
   function addv(pokemon) {
     if (typeof(pokemon) === 'object') {
-      return pokemonList.push(pokemon)
+      return add(pokemon)
     } else {
       console.log('Cannot be added');
     }
   };
+*/
 
   return {
     getAll: getAll,
