@@ -1,10 +1,30 @@
 /* CSS for JavaScript app in Achievement 1*/
 
 body {
-font-family: 'Zen Antique', serif;
-font-weight: 400;
-font-size: 16px;
-line-height: 1.4;
-color: #154c79;
-padding: 10px;
+  font-family: 'Zen Antique', serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.4;
+  color: #154c79;
+  padding: 10px;
+}
+
+.button1 {
+  background-color: #154c79;
+  color: white;
+  border: 2px solid grey;
+  padding: 16px 32px;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+
+}
+
+.pokemon-list {
+  list-style-type: none;
+  padding: 5px;
+  margin: 5px;
+}
 }
