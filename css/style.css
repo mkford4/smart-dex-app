@@ -9,6 +9,10 @@ body {
   padding: 10px;
 }
 
+h1 {
+  padding: 0 16px;
+}
+
 .button1 {
   background-color: #154c79;
   color: white;
@@ -19,6 +23,7 @@ body {
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
+  width: 75%;
 
 }
 
@@ -26,5 +31,4 @@ body {
   list-style-type: none;
   padding: 5px;
   margin: 5px;
-}
 }
