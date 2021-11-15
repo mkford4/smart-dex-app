@@ -1,3 +1,4 @@
+// IIFE
 let pokemonRepository = (function () {
   let pokemonList = [
     {name: 'Bulbasaur', height: 2.04, types: ['grass', 'poison']},
@@ -24,23 +25,52 @@ let pokemonRepository = (function () {
       console.log('Cannot be added');
     }
   };
-*/
+
+// addListItem
+  function addListItem(pokemon) {
+    //created li & button to existing HTML ul.pokmeon-list
+    let uList = document.querySelector('.pokemon-list');
+    let listItem = document.createElement('li');
+    let button = document.createElement('button');
+    //each button via getAll is named after each pokemon in pokemonList
+    button.innerText = pokemon.name;
+    //added classList of button1 for CSS styling
+    button.classList.add('button1');
+    //append created elements to li and ul, respectively
+    listItem.appendChild(button);
+    uList.appendChild(listItem);
+
+    //event listener to created button above that listens for click
+    button.addEventListener('click', function(event) {
+      showDetails(pokemon)
+    })
+//closure of addListItem function here
+  };
+
+  //showDetails function for later on
+  function showDetails(pokemon) {
+    console.log(pokemon)
+  };
 
   return {
-    getAll: getAll,
-    add: add
-  };
+  getAll: getAll,
+  add: add,
+  addListItem: addListItem,
+  addv: add
+};
+
 })();
 
 // forEach loop (simplified from for loop below)
 pokemonRepository.getAll().forEach( function(pokemon) {
-  if (pokemon.height > 4) {
+  /*if (pokemon.height > 4) {
     document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') - Wow, that\'s big! </p>' )
   } else {
     document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') </p>')
   }
-});
-
+*/
+  pokemonRepository.addListItem(pokemon);
+  });
 
 
 /* for loop: Lists out pokemon in pokemonList with height; added conditional for tallest Pokemon with extra message
