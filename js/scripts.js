@@ -12,7 +12,7 @@ let pokemonRepository = (function () {
     return pokemonList.push(pokemon)
   };
 
-//bonus task- addv function should only input objects for input vaildation
+//bonus task 1.5- addv function should only input objects for input vaildation
   function addv(pokemon) {
     if (
       typeof pokemon === 'object' &&
@@ -40,25 +40,28 @@ let pokemonRepository = (function () {
     //append created elements to li and ul, respectively
     listItem.appendChild(button);
     uList.appendChild(listItem);
-
     //event listener to created button above that listens for click
     button.addEventListener('click', function(event) {
-      showDetails(pokemon)
-    })
+      showDetails(pokemon);
+    });
   //closure of addListItem function here
   };
 
-  //showDetails function for later on
-  function showDetails(pokemon) {
-    loadDetails(pokemon).then(function() {
-      console.log(pokemon);
-    });
+  //bonus task 1.7- displays a loading message while data is being loaded
+  function showLoadingMessage() {
+    let messageParent = document.createElement('div');
+    let message = document.createElement('p');
+    message.innerText = 'Pokedex is loading...';
+    messageParent.appendChild(message);
+  }
+  function hideLoadingMessage() {
+    message.parentElement.removeChild(message);
   }
 
   //loads the list of Pokemon from API
   function loadList() {
-    return fetch(apiUrl).then(function (response)
-  {
+    return showLoadingMessage();
+    return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
       json.results.forEach(function (item) {
@@ -67,25 +70,37 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
+        return hideLoadingMessage();
       });
     }).catch(function (e) {
       console.error(e);
+      return hideLoadingMessage();
     })
   };
 
   function loadDetails(item) {
+    return showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      //adds the details to the items
+      //add the details to the items
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
+      return hideLoadingMessage();
     }).catch(function (e) {
       console.error(e);
+      return hideLoadingMessage();
     });
   };
+
+  //showDetails function for later on
+  function showDetails(pokemon) {
+    loadDetails(pokemon).then(function() {
+      console.log(pokemon);
+    });
+  }
 
   //Returns for repository IIFE here:
   return {
