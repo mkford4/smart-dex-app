@@ -50,7 +50,10 @@ let pokemonRepository = (function () {
 
   //showDetails function for later on
   function showDetails(pokemon) {
-    console.log(pokemon)
+    loadDetails(pokemon).then(function() {
+      console.log(pokemon);
+    });
+  }
 
   //loads the list of Pokemon from API
   function loadList() {
