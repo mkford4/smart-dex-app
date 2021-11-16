@@ -1,14 +1,9 @@
 // IIFE
 let pokemonRepository = (function () {
-  let pokemonList = [
-    {name: 'Bulbasaur', height: 2.04, types: ['grass', 'poison']},
-    {name: 'Charmander', height: 2, types: 'fire'},
-    {name: 'Squirtle', height: 1.08, types: 'water'},
-    {name: 'Alakazam', height: 4.11, types: 'psychic'},
-    {name: 'Pikachu', height: 1.04, types: 'electric'},
-    {name: 'Sandslash', height: 3.3, types: 'ground'},
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
 
+//main functions
   function getAll() {
     return pokemonList;
   };
@@ -17,7 +12,7 @@ let pokemonRepository = (function () {
     return pokemonList.push(pokemon)
   };
 
-//attempt at bonus task- addv function should only input objects
+//bonus task- addv function should only input objects for input vaildation
   function addv(pokemon) {
     if (
       typeof pokemon === 'object' &&
@@ -26,6 +21,7 @@ let pokemonRepository = (function () {
       //'types' in pokemon
     ) {
       add(pokemon);
+      console.log('Added');
     } else {
       console.log('Cannot be added');
     }
