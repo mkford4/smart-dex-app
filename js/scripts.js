@@ -48,7 +48,7 @@ let pokemonRepository = (function () {
   };
 
   //bonus task 1.7- displays a loading message while data is being loaded
-  function showLoadingMessage() {
+  /*function showLoadingMessage() {
     let messageParent = document.createElement('div');
     let message = document.createElement('p');
     message.innerText = 'Pokedex is loading...';
@@ -57,10 +57,10 @@ let pokemonRepository = (function () {
   function hideLoadingMessage() {
     message.parentElement.removeChild(message);
   }
-
+*/
   //loads the list of Pokemon from API
   function loadList() {
-    return showLoadingMessage();
+    //return showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -70,16 +70,16 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
-        return hideLoadingMessage();
+        //return hideLoadingMessage();
       });
     }).catch(function (e) {
       console.error(e);
-      return hideLoadingMessage();
+      //return hideLoadingMessage();
     })
   };
 
   function loadDetails(item) {
-    return showLoadingMessage();
+    //return showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
@@ -88,10 +88,10 @@ let pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
-      return hideLoadingMessage();
+      //return hideLoadingMessage();
     }).catch(function (e) {
       console.error(e);
-      return hideLoadingMessage();
+      //return hideLoadingMessage();
     });
   };
 
