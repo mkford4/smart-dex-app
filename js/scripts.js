@@ -97,19 +97,21 @@ let pokemonRepository = (function () {
   showDetails: showDetails,
   loadDetails: loadDetails,
 };
-
 })();
 
-// forEach loop (simplified from for loop below)
-pokemonRepository.getAll().forEach( function(pokemon) {
-  /*if (pokemon.height > 4) {
-    document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') - Wow, that\'s big! </p>' )
-  } else {
-    document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') </p>')
-  }
-*/
-  pokemonRepository.addListItem(pokemon);
-  });
+//fetches the data from API via loadList function
+pokemonRepository.loadList().then(function () {
+  // forEach loop (simplified from for loop below)
+  pokemonRepository.getAll().forEach( function(pokemon) {
+    /*if (pokemon.height > 4) {
+      document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') - Wow, that\'s big! </p>' )
+    } else {
+      document.write( '<p>' + pokemon.name + ' (height: ' + pokemon.height + ') </p>')
+    }
+  */
+    pokemonRepository.addListItem(pokemon);
+    });
+});
 
 
 /* for loop: Lists out pokemon in pokemonList with height; added conditional for tallest Pokemon with extra message
