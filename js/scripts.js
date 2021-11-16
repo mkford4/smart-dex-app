@@ -27,7 +27,7 @@ let pokemonRepository = (function () {
     }
   };
 
-// addListItem
+  // addListItem
   function addListItem(pokemon) {
     //created li & button to existing HTML ul.pokmeon-list
     let uList = document.querySelector('.pokemon-list');
@@ -45,19 +45,54 @@ let pokemonRepository = (function () {
     button.addEventListener('click', function(event) {
       showDetails(pokemon)
     })
-//closure of addListItem function here
+  //closure of addListItem function here
   };
 
   //showDetails function for later on
   function showDetails(pokemon) {
     console.log(pokemon)
+
+  //loads the list of Pokemon from API
+  function loadList() {
+    return fetch(apiUrl).then(function (response)
+  {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
   };
 
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      //adds the details to the items
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  };
+
+  //Returns for repository IIFE here:
   return {
   getAll: getAll,
   add: add,
   addListItem: addListItem,
-  addv: add
+  addv: add,
+  loadList: loadList,
+  showDetails: showDetails,
+  loadDetails: loadDetails,
 };
 
 })();
