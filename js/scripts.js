@@ -95,12 +95,66 @@ let pokemonRepository = (function () {
     });
   };
 
+//Modal code:
+  let modalContainer = document.querySelector('#modal-container');
+  function showModal(title, text) {
+    modalContainer.innerHTML = '';
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
+
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal-close');
+    closeButtonElement.innerText = 'X';
+    //closes modal when X button is clicked
+    closeButtonElement.addEventListener('click', hideModal);
+
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = title;
+    let contentElement = document.createElement('p');
+    contentElement.innerText = text;
+
+    let imgElement = document.createElement('img');
+    imgElement.src = pokemon.imageUrl;
+
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(imgElement);
+
+    modalContainer.appendChild(modal);
+    modalContainer.classList.add('is-visible');
+  }
+
+  function hideModal() {
+    modalContainer.classList.remove('is-visible');
+  }
+
+  //closes modal with ESC key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is-visible')) {
+      hideModal();
+    }
+  });
+
+  //closes modal with hideModal by clicking anywhere outside modal
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal(pokemon.name, ('Height: ' + pokemon.height + '<p>Type: ' + pokemon.type))
+  });
+
   //showDetails function for later on
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function() {
-      console.log(pokemon);
+      //console.log(pokemon.name);
+      showModal(title,text);
     });
-  }
+
 
   //Returns for repository IIFE here:
   return {
