@@ -48,19 +48,21 @@ let pokemonRepository = (function () {
   };
 
   //bonus task 1.7- displays a loading message while data is being loaded
-  /*function showLoadingMessage() {
-    let messageParent = document.createElement('div');
-    let message = document.createElement('p');
-    message.innerText = 'Pokedex is loading...';
-    messageParent.appendChild(message);
+  /*let messageParent = document.querySelector('app-body'));
+  let message = document.createElement('p');
+  message.innerText = 'Pokedex is loading...';
+  messageParent.appendChild(message);
+
+  function showLoadingMessage() {
+    message.classList.add('is-visible');
   }
   function hideLoadingMessage() {
-    message.parentElement.removeChild(message);
+    message.classList.remove('is-visible');
   }
 */
   //loads the list of Pokemon from API
   function loadList() {
-    //return showLoadingMessage();
+    //showLoadingMessage();
     return fetch(apiUrl).then(function (response) {
       return response.json();
     }).then(function (json) {
@@ -70,16 +72,16 @@ let pokemonRepository = (function () {
           detailsUrl: item.url
         };
         add(pokemon);
-        //return hideLoadingMessage();
+        //hideLoadingMessage();
       });
     }).catch(function (e) {
       console.error(e);
-      //return hideLoadingMessage();
-    })
+      //hideLoadingMessage();
+    });
   };
 
   function loadDetails(item) {
-    //return showLoadingMessage();
+    //showLoadingMessage();
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
       return response.json();
@@ -88,10 +90,10 @@ let pokemonRepository = (function () {
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
       item.types = details.types;
-      //return hideLoadingMessage();
+      //hideLoadingMessage();
     }).catch(function (e) {
       console.error(e);
-      //return hideLoadingMessage();
+      //hideLoadingMessage();
     });
   };
 
@@ -144,28 +146,29 @@ let pokemonRepository = (function () {
     }
   });
 
-  document.querySelector('#show-modal').addEventListener('click', () => {
-    showModal(pokemon.name, ('Height: ' + pokemon.height + '<p>Type: ' + pokemon.type))
-  });
-
   //showDetails function for later on
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function() {
       //console.log(pokemon.name);
       showModal(title,text);
     });
+  }
 
+  //Returns showModal when button is clicked with title & text parameters
+  document.querySelector('#show-modal').addEventListener('click', () => {
+    showModal(pokemon.name, ('Height: ' + pokemon.height + '<p>Type: ' + pokemon.type));
+  });
 
   //Returns for repository IIFE here:
   return {
-  getAll: getAll,
-  add: add,
-  addListItem: addListItem,
-  addv: add,
-  loadList: loadList,
-  showDetails: showDetails,
-  loadDetails: loadDetails,
-};
+    getAll: getAll,
+    add: add,
+    addListItem: addListItem,
+    addv: add,
+    loadList: loadList,
+    showDetails: showDetails,
+    loadDetails: loadDetails,
+  };
 })();
 
 //fetches the data from API via loadList function
