@@ -91,3 +91,11 @@ h1 {
 .modal p {
   margin-bottom: 0;
 }
+
+.loading-message {
+  display: none;
+}
+
+.loading-message.is-visible {
+  display: block;
+}
