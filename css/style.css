@@ -86,10 +86,13 @@ h1 {
 
 .modal h1 {
   margin-top: 0;
+  text-transform: uppercase;
 }
 
 .modal p {
   margin-bottom: 0;
+  padding: 20px;
+
 }
 
 .loading-message {
@@ -98,4 +101,17 @@ h1 {
 
 .loading-message.is-visible {
   display: block;
+}
+
+/* for Modal title */
+.title-element {
+  font-weight: bold;
+}
+
+.content-element {
+
+}
+
+.pokemon-photo {
+  vertical-align: baseline;
 }
