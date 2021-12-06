@@ -41,6 +41,7 @@ let pokemonRepository = (function () {
     button.classList.add('btn');
     button.classList.add('btn-primary');
     button.setAttribute('data-toggle', 'modal');
+    button.setAttribute('data-target', '#exampleModal');
 
     //append created elements to li and ul, respectively
     listItem.appendChild(button);
