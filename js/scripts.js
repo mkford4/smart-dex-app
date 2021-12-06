@@ -16,9 +16,11 @@ let pokemonRepository = (function () {
   function addv(pokemon) {
     if (
       typeof pokemon === 'object' &&
-      'name' in pokemon //&&
-      //'height' in pokemon &&
-      //'types' in pokemon
+      'name' in pokemon &&
+      'height' in pokemon &&
+      'weight' in pokemon &&
+      'types' in pokemon &&
+      'abilities' in pokemon
     ) {
       add(pokemon);
       console.log('Added');
@@ -93,11 +95,11 @@ let pokemonRepository = (function () {
       return response.json();
     }).then(function (details) {
       //add the details to the items
-      item.imageUrl = details.sprites.front_default;
+      item.imageUrlFront = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
       item.weight = details.weight;
-      item.abilities = details.abilities;
+      item.types = details.types[0,1].type.name;
+      item.abilities = details.abilities[0].ability.name;
       //hideLoadingMessage();
     }).catch(function (e) {
       console.error(e);
@@ -130,8 +132,8 @@ let pokemonRepository = (function () {
 
     let imageElementFront = $('<img class= "modal-img" style="width:50%">');
     imageElementFront.attr('src', pokemon.imageUrlFront);
-    let imageElementBack = $('<img class="modal-img" style="width:50%">');
-    imageElementBack.attr('src', pokemon.imageUrlBack);
+    //let imageElementBack = $('<img class="modal-img" style="width:50%">');
+    //imageElementBack.attr('src', pokemon.imageUrlBack);
 
     let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
@@ -140,14 +142,14 @@ let pokemonRepository = (function () {
     //append all from above
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
-    modalBody.append(imageElementBack);
+    //modalBody.append(imageElementBack);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
     modalBody.append(typeElement);
     modalBody.append(abilitiesElement);
 
     //calling the modal
-    $('#exampleModalLabel').modal();
+    $('#exampleModal').modal();
 
   };
 
