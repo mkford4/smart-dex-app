@@ -55,6 +55,19 @@ let pokemonRepository = (function () {
   //closure of addListItem function here
   };
 
+  //bonus task 1.7- displays a loading message while data is being loaded
+  /*let messageParent = document.querySelector('app-body'));
+  let message = document.createElement('p');
+  message.innerText = 'Pokedex is loading...';
+  messageParent.appendChild(message);
+
+  function showLoadingMessage() {
+    message.classList.add('is-visible');
+  }
+  function hideLoadingMessage() {
+    message.classList.remove('is-visible');
+  }
+*/
   //loads the list of Pokemon from API
   function loadList() {
     //showLoadingMessage();
@@ -139,6 +152,32 @@ let pokemonRepository = (function () {
     //calling the modal
     $('#exampleModal').modal();
   };
+
+/*-------Search function in progress... ----
+  function findPokemon(pokemon) {
+    let pokemonName = document.getElementById('pokemonName').value;
+
+    pokemonName = pokemonName.toLowerCase();
+
+    let searchResult = pokemonList.filter(function(pokemon) {
+      return pokemon.name === pokemonName;
+    });
+
+    //If not found, alert user
+    if (typeof searchResult[0] === 'undefined') {
+      alert('Sorry' + document.getElementById('pokemonName').value + ' cannot be found. Please search again.');
+    }
+    else {
+      let pokemonBox = document.querySelector('.' + pokemonName);
+      pokemonBox.style.backgroundColor = '#white';
+      pokemonBox.focus();
+    }
+  }
+
+  function pokemonToFind() {
+    findPokemon(document.getElementById("pokemonName").value);
+  }
+*/
 
   //Returns for repository IIFE here:
   return {
