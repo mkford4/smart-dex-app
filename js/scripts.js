@@ -55,19 +55,6 @@ let pokemonRepository = (function () {
   //closure of addListItem function here
   };
 
-  //bonus task 1.7- displays a loading message while data is being loaded
-  /*let messageParent = document.querySelector('app-body'));
-  let message = document.createElement('p');
-  message.innerText = 'Pokedex is loading...';
-  messageParent.appendChild(message);
-
-  function showLoadingMessage() {
-    message.classList.add('is-visible');
-  }
-  function hideLoadingMessage() {
-    message.classList.remove('is-visible');
-  }
-*/
   //loads the list of Pokemon from API
   function loadList() {
     //showLoadingMessage();
@@ -96,9 +83,10 @@ let pokemonRepository = (function () {
     }).then(function (details) {
       //add the details to the items
       item.imageUrlFront = details.sprites.front_default;
+      item.imageUrlBack = details.sprites.back_default;
       item.height = details.height;
       item.weight = details.weight;
-      item.types = details.types[0,1].type.name;
+      item.types = details.types[0].type.name;
       item.abilities = details.abilities[0].ability.name;
       //hideLoadingMessage();
     }).catch(function (e) {
@@ -132,17 +120,17 @@ let pokemonRepository = (function () {
 
     let imageElementFront = $('<img class= "modal-img" style="width:50%">');
     imageElementFront.attr('src', pokemon.imageUrlFront);
-    //let imageElementBack = $('<img class="modal-img" style="width:50%">');
-    //imageElementBack.attr('src', pokemon.imageUrlBack);
+    let imageElementBack = $('<img class="modal-img" style="width:50%">');
+    imageElementBack.attr('src', pokemon.imageUrlBack);
 
     let heightElement = $('<p>' + 'Height: ' + pokemon.height + '</p>');
     let weightElement = $('<p>' + 'Weight: ' + pokemon.weight + '</p>');
-    let typeElement = $('<p>' + 'Type: ' + pokemon.type + '</p>');
+    let typeElement = $('<p>' + 'Type: ' + pokemon.types + '</p>');
     let abilitiesElement = $('<p>' + 'Abilities: ' + pokemon.abilities + '</p>');
     //append all from above
     modalTitle.append(nameElement);
     modalBody.append(imageElementFront);
-    //modalBody.append(imageElementBack);
+    modalBody.append(imageElementBack);
     modalBody.append(heightElement);
     modalBody.append(weightElement);
     modalBody.append(typeElement);
@@ -150,7 +138,6 @@ let pokemonRepository = (function () {
 
     //calling the modal
     $('#exampleModal').modal();
-
   };
 
   //Returns for repository IIFE here:
