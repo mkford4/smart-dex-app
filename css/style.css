@@ -1,15 +1,26 @@
 /* CSS for JavaScript app in Achievement 1*/
 
 body {
-  font-family: 'Zen Antique', serif;
+  font-family: 'Dosis', serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 1.4;
   color: #154c79;
   padding: 10px;
+  /* background-image: url("../css/pokeballs.jpg");
+  background-position: center;
+  background-repeat: repeat repeat;
+  */
+  background-color: #a4d4fb;
 }
 
+nav {
+  background-color: #f9f193;
+}
+
+
 h1 {
+  font-size: 32px;
   padding: 0 16px;
 }
 
@@ -17,10 +28,11 @@ h1 {
   text-align: center;
 }
 
+
 .button1 {
-  background-color: #154c79;
+  background-color: #1879c8;
   color: white;
-  border: 2px solid grey;
+  border: 2px solid #f9f193;
   padding: 16px 32px;
   display: inline-block;
   font-size: 16px;
@@ -38,17 +50,18 @@ h1 {
   list-style-type: none;
   padding: 5px;
   margin: 5px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 }
 
 .modal h1 {
   margin-top: 0;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 
 .modal p {
   margin-bottom: 0;
   padding: 20px;
-
 }
 
 .loading-message {
@@ -70,4 +83,16 @@ h1 {
 
 .pokemon-photo {
   vertical-align: baseline;
+}
+
+@media all and (min-width:500px) and (max-width: 800px) {
+  .pokemon-list {
+    grid-template-columns: 1fr 1fr;
+    }
+  }
+
+@media all and (max-width: 500px) {
+  .pokemon-list {
+    grid-template-columns: 1fr
+  }
 }
