@@ -5,8 +5,9 @@ A small web application with HTML, CSS, and JS that loads the Pokedex API for vi
 
 Features:
 - loads data from an external API source
-- view a list of items
-- upon user action, view details for that item
+- views a list of items in a grid display
+- upon user action, modal pop-up displays further details of each item
 
-Expected finish date: December 1, 2021
+# Design & Build
+The application uses HTML, CSS and JavaScript functions as well as polyfills, bootstrap & jQuery to enhance the functionality and design through modals, buttons, and a navbar.
 
