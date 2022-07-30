@@ -13,3 +13,4 @@ The application uses HTML, CSS and JavaScript functions as well as polyfills, bo
 
 (I was the sole designer and developer for this application, with ESLint included to clean up and create consistent code.)
 
+![Pokedex-screenshot](https://user-images.githubusercontent.com/91907563/181870696-4c49089f-eff9-4a92-b54e-169434312362.png)
